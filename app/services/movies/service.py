@@ -54,6 +54,7 @@ class MovieService:
         """
         Check if the movie collection is empty and notify via the publish-subscribe client if it is.
         """
+        # TODO add retry logic
         is_empty = await self.movie_repository.check_empty_collection()
         if is_empty:
             self.pub_sub_client.publish({"Status": "Empty"})

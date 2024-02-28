@@ -23,5 +23,6 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     else:
         expire = datetime.utcnow() + timedelta(minutes=int(Config.ACCESS_TOKEN_TTL_MINUTES()))
     to_encode.update({"exp": expire})
+    # TODO google create secret manager client and add secret key there
     encoded_jwt = jwt.encode(to_encode, Config.TOKEN_SECRET_KEY(), algorithm=Config.TOKEN_ALGORITHM())
     return encoded_jwt
